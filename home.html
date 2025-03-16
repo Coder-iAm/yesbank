@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes Bank Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="sign-in">
+    <div class="login-container">
+        <div class="logo1">
+            <img src="img/logo-dark.png" alt="YES BANK Logo">
+            <h3>Welcome Back !</h3>
+            <p>Sign in to continue to Giftlaya.</p>
+        </div>
+        <div>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="100001">
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="••••••">
+            </div>
+
+            <button id="submit-login" class="login-btn">Sign In</button>
+        </div>
+    </div>
+    <div class="toast">please fill with valid information</div>
+    <script>
+
+document.getElementById("submit-login").addEventListener("click", () => {
+    // Get values from input fields
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    fetch("/admin-login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password }) // Now values are correctly sent
+    })
+    .then(response => response.json())
+    .then(data => {
+        const toast = document.querySelector(".toast");
+
+        if (data.err === "invalid") {
+            toast.innerHTML = "<span class='icon'>⚠</span> Username or password is incorrect!";
+            toast.style.backgroundColor = "#f2dede"; // Light red
+            toast.style.color = "#a94442"; // Dark red
+            toast.classList.add("show");
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.add("hide");
+                setTimeout(() => {
+                    toast.classList.remove("show", "hide");
+                }, 3500);
+            }, 4000);
+        } 
+       else if (data.err === "warning") {
+            toast.innerHTML = "<span class='icon'>⚠</span> Warning! you are not an admin";
+            toast.style.backgroundColor = "#f2dede"; // Light red
+            toast.style.color = "#a94442"; // Dark red
+            toast.classList.add("show");
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.add("hide");
+                setTimeout(() => {
+                    toast.classList.remove("show", "hide");
+                }, 3500);
+            }, 4000);
+        } 
+        else if (data.success === "done") {
+            window.location.href = "/dashboard"; // Redirect to dashboard
+        } 
+        else {
+            console.log("Unexpected response");
+        }
+    })
+    .catch(error => console.error("Error:", error));
+});
+
+    </script>
+</body>
+
+</html>

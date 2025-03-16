@@ -1,0 +1,1044 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+/*Sign-in page*/
+.sign-in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+}
+
+.login-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+
+.logo1{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.login-container img {
+    width: 150px;
+}
+
+.login-container h3 {
+    font-size: 18px;
+    color: #2d4089;
+    margin-top: 10px;
+}
+
+.login-container p {
+    font-size: 14px;
+    color: #777;
+}
+
+.input-group {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    font-size: 16px;
+}
+
+.login-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background: #d80027;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background: #c00021;
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 20px;
+        width: 90%;
+    }
+    .login-container h3{
+        font-size: 18px;
+    }
+}
+
+
+/*dashboard*/
+.Dashboard {
+    background-color: #f0f0f0;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.logo{
+    display: flex;
+    justify-content: center;
+}
+.logo img {
+    border: 1px solid rgba(255, 0, 0, 0);
+    border-radius: 8px;
+    height: 30px; /* Adjust as needed */
+}
+.menu-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+    color: #1f1d3dd0;
+}
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.icons i {
+    font-size: 18px;
+    cursor: pointer;
+}
+.icons .bell {
+    position: relative;
+}
+.icons .bell span {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 3px 6px;
+}
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.profile img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.main-content {
+    height: 100vh;
+    background: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #777;
+}
+@media (max-width: 768px) {
+    .header {
+        padding: 10px;
+    }
+    .logo img {
+        height: 25px;
+    }
+    .icons i {
+        font-size: 16px;
+    }
+    .profile img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    background-color: rgb(0, 0, 172);
+    padding-top: 60px;
+    transition: 0.3s;
+    color: white;
+}
+
+.sidebar a {
+    display: block;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.sidebar a:hover {
+    background-color: #001c71;
+}
+
+/* Hide submenus by default */
+.sidebar ul {
+    list-style: none;
+    padding-left: 20px;
+    display: none;  /* Initially hidden */
+}
+
+/* Show submenus when the parent has the 'active' class */
+.sidebar a.active + ul {
+    display: block;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+.submenu {
+    display: none; 
+    padding-left: 20px;
+    background-color: #001c7100;
+}
+
+.submenu li {
+    padding: 10px;
+    list-style: none;
+    color: white;
+    cursor: pointer;
+}
+
+.submenu li:hover {
+    background-color: #003399;
+}
+
+@media (max-width: 768px) {
+    .sidebar a {
+        font-size: 11px;
+    }
+    .submenu li {
+        font-size: 11px;
+    }
+}
+/* Form Container */
+.form-hold{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 70vh;
+}
+.main-content {
+    display: none;
+    background: #fff;
+    padding: 30px;
+    height: 60vh;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    max-width: 600px;
+   
+    flex-direction: column;
+}
+
+/* Form Title */
+.main-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #da0303;
+}
+
+/* Form Grid */
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+/* Single Column for Mobile */
+@media (max-width: 600px) {
+    .form-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Labels */
+.main-content label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+/* Inputs */
+.main-content input {
+    width: 100%;
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* Input Focus Effect */
+.main-content input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit Button */
+.main-content button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    margin-top: 8px;
+}
+
+/* Button Hover Effect */
+.main-content button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .main-content {
+        height: 100vh;
+        width: 80%;
+        padding: 20px;
+    }
+    .main-content h2 {
+        text-align: center;
+        margin-bottom: 17px;
+        font-size: 20px;
+    }
+    .main-content label {
+        
+        font-size: 12px;
+      
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        width: 90%;
+    }
+}
+
+.toast {
+    display: none;
+    position: fixed;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 90%;
+    max-width: 350px;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Icon styling */
+.toast .icon {
+    font-size: 16px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Show Toast */
+.toast.show {
+    display: flex;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Hide Toast Slowly */
+.toast.hide {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+
+.container-user-list {
+    display: none;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.user-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 10px;
+}
+
+.user {
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    
+}
+
+.user h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.user p {
+    font-size: 14px;
+    color: #555;
+    margin: 3px 0;
+}
+
+.delete-icon {
+    
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: red;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .user-list {
+        grid-template-columns: 1fr 1fr;
+    }
+    h2{
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Add Funds Section */
+.funds-section {
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    background-color: #f5f5f500;
+    width: 100%;
+}
+
+/* Funds Container */
+.funds-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Title */
+.funds-container h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Input Group */
+.funds-input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.funds-input-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.funds-input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Flex Row */
+.funds-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* Deposit Button */
+.funds-btn {
+    width: 100%;
+    background-color: #d32f2f;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.funds-btn:hover {
+    background-color: #b71c1c;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .funds-flex {
+        flex-direction: column;
+    }
+    .funds-input-group label {
+       font-size: 15px;
+    }
+    .funds-container h2 {
+       font-size: 20px;
+    }
+    
+}
+
+
+/* Withdraw Section */
+.withdraw-section {
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    background-color: #f5f5f500;
+    width: 100%;
+   
+}
+
+/* Withdraw Container */
+.withdraw-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Title */
+.withdraw-container h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Input Group */
+.withdraw-input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.withdraw-input-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.withdraw-input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Flex Row */
+.withdraw-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* Withdraw Button */
+.withdraw-btn {
+    width: 100%;
+    background-color: #1d2bc0;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.withdraw-btn:hover {
+    background-color: #0b1479;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .withdraw-flex {
+        flex-direction: column;
+    }
+    .withdraw-input-group label {
+       font-size: 15px;
+    }
+    .withdraw-container h2 {
+       font-size: 20px;
+    }
+    
+}
+
+
+/* Money Transfer Section */
+.moneytransfer-section {
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    background-color: #f5f5f500;
+    width: 100%;
+}
+
+/* Money Transfer Container */
+.moneytransfer-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Title */
+.moneytransfer-container h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Input Group */
+.moneytransfer-input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.moneytransfer-input-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.moneytransfer-input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Flex Row */
+.moneytransfer-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* Withdraw Button */
+.moneytransfer-btn {
+    width: 100%;
+    background-color: #c0821d;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.moneytransfer-btn:hover {
+    background-color: #9a6818;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .moneytransfer-flex {
+        flex-direction: column;
+    }
+    .moneytransfer-input-group label {
+       font-size: 15px;
+    }
+    .moneytransfer-container h2 {
+       font-size: 20px;
+    }
+}
+
+
+
+.wholewrapper {
+    background: #eef2f3;
+    display: none;
+    justify-content: center;
+    padding: 20px;
+}
+
+#transactionWrapper {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#transactionTitle {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+.logEntry {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    transition: 0.3s;
+}
+
+.logEntry:hover {
+    transform: translateY(-3px);
+}
+
+.transactionIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: white;
+    margin-right: 12px;
+}
+
+.debitTransaction .transactionIcon {
+    background: #ff4d4d;
+}
+
+.creditTransaction .transactionIcon {
+    background: #4CAF50;
+}
+
+.transactionDetails {
+    flex: 1;
+}
+
+.transactionAmount {
+    font-weight: bold;
+    color: #222;
+}
+
+.transactionTime {
+    font-size: 12px;
+    color: gray;
+}
+
+@media (max-width: 500px) {
+    .logEntry {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .transactionIcon {
+        margin-bottom: 8px;
+    }
+}
+
+#delete-tran{
+    display: flex;
+    justify-content: flex-end;
+    margin: 8px;
+}
+
+
+
+
+
+
+.dashboard {
+    width: 100%;
+    padding: 15px;
+    background-color: #f5f5f5;
+}
+
+.dashboard-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(93, 93, 93);
+    margin-bottom: 8px;
+}
+
+.dashboard-box {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.bank-logo {
+    max-width: 100%; /* Ensures the logo is fully visible */
+    height: auto;
+}
+
+.big-div {
+    width: 100%;
+    height: 150px; /* Adjust height as needed */
+    margin-top: 10px;
+    background: #e3e3e3;
+    border-radius: 8px;
+}
+
+
+/*div profile*/
+.profile-menu {
+    margin: 0;
+    position: absolute;
+    top: 50px;
+    right: 12px;
+    background: white;
+    width: 260px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 15px;
+    display: none;
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+.profile-menu.active {
+    display: block;
+}
+
+.profile-menu h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #222;
+    text-align: center;
+    font-weight: bold;
+}
+
+.profile-menu p {
+    font-size: 14px;
+    color: #444;
+    margin-top: 8px;
+    padding: 5px 10px;
+    background: #f5f5f5;
+    border-radius: 5px;
+}
+
+.profile-menu p strong {
+    color: #0073e6;
+}
+
+.logout-btn {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background: red;
+    color: white;
+    border-radius: 6px;
+    margin-top: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.logout-btn:hover {
+    background: darkred;
+}
+
+/* 🔹 Responsive Design */
+@media (max-width: 600px) {
+    .profile-menu {
+        width: 220px;
+        
+    }
+    .profile-menu h4 {
+        font-size: 16px;
+    }
+    .profile-menu p {
+        font-size: 13px;
+    }
+}
+
+
+
+/*footer*/
+/* Footer */
+.footer {
+    background-color: #0033cc; /* Blue background */
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    height: auto; /* Remove fixed height to allow flexibility */
+    min-height: 30vh; /* Ensures enough space */
+    text-align: left;
+}
+
+/* Left Section */
+.footer-section {
+    max-width: 600px;
+    flex: 1;
+    min-width: 300px;
+    margin-bottom: 20px;
+}
+
+/* Headings */
+.footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Paragraph */
+.footer-section p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.social-icons a {
+    background-color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+    transform: scale(1.1);
+}
+
+.social-icons a i {
+    color: #0033cc;
+    font-size: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .footer {
+        padding: 20px;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer-section {
+        text-align: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer {
+        padding: 15px;
+    }
+
+    .social-icons a {
+        width: 35px;
+        height: 35px;
+    }
+
+    .social-icons a i {
+        font-size: 18px;
+    }
+}

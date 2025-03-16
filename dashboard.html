@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YES BANK Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+ <link rel="stylesheet" href="style.css">
+</head>
+<body class="Dashboard">
+    <header class="header">
+        
+        <div class="logo">
+            <div class="menu-icon" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+            <img src="img/logo-dark.png" alt="YES BANK"> <!-- Add your logo here -->
+        </div>
+        <div class="icons">
+           
+            <div class="bell" onclick="Banking()">
+                <i class="fa fa-bell"></i>
+                <span>3</span>
+            </div>
+            <div class="profile" onclick="toggleProfile()">
+                <img src="img/picture_pro.jpg" alt="Admin">
+                <span>Admin</span>
+            </div>
+        </div>
+    </header>
+<!-- 🔹 Profile Dropdown Menu -->
+<div class="profile-menu" id="profileDropdown">
+   
+</div>
+
+
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+           
+            <img src="img/logo-light.png" alt="YES BANK"> <!-- Add your logo here -->
+        </div>
+        <span class="close-btn" onclick="toggleSidebar()">&times;</span> <!-- Close X Button -->
+        <a href="#"><i class="fas fa-globe"></i> Global Account </a>   <ul class="submenu">
+            <li onclick="createAC()">Create Account</li>
+            <li onclick="listUser()">Account list</li>
+        </ul>
+        <a onclick="moneytns()"><i class="fas fa-exchange-alt"></i> Money Transfer</a>
+        <a href="#"><i class="fas fa-university"></i> Banking</a> 
+        <ul class="submenu">
+            <li onclick="addfunds()">Add Funds</li>
+            <li onclick="withdraw()">Withdraw Money</li>
+            <li onclick="Banking()">Banking History</li>
+        </ul>
+
+        <a href="#"><i class="fas fa-cogs"></i> Other Services</a>
+        <a href="#"><i class="fas fa-hand-holding-usd"></i> Loan Service</a>
+    </div>
+
+    <div class="dashboard">
+      
+        <div class="dashboard-box">
+            <div class="dashboard-title">Dashboard</div>
+            <img src="img/logo-dark.png" alt="Yes Bank" class="bank-logo">
+        </div>
+        
+    </div>
+
+
+<div class="form-hold">
+    <div class="main-content" id="createac">
+        <h2>Create Global Account</h2>
+        <div>
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="name">Full Name*</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="username">Username*</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="password">Password*</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="account_number">Account Number*</label>
+                    <input type="text" id="account_number" name="account_number" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="branch">Branch Name*</label>
+                    <input type="text" id="branch" name="branch" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="aadhaar">Aadhaar Number*</label>
+                    <input type="text" id="aadhaar" name="aadhaar" pattern="\d{12}" title="Enter a valid 12-digit Aadhaar number" required>
+                </div>
+                <div class="form-group">
+                    <label for="atm_number">IFSC*</label>
+                    <input type="text" id="ifsc" name="ifsc" required>
+                </div>
+            </div>
+        <div class="toast">please fill with valid information</div>
+            <button id="submit">Create Account</button>
+        </div>
+    </div>
+
+
+    <div class="container-user-list" id="userlist">
+        <h2>User Accounts</h2>
+        <div class="user-list" id="allusers">
+        <center>no user found!</center>
+        </div>
+        <div class="toast">please fill with valid information</div>
+    </div>
+
+
+    <section class="funds-section" id="addfunds">
+        <div class="funds-container">
+            <h2>Add Funds</h2>
+            <div class="funds-input-group">
+                <label for="fund-amount">Enter Account Number*</label>
+                <input type="text" id="fund-reciever" placeholder="Enter account number" required>
+            </div>
+            <div class="funds-input-group">
+                <label for="fund-amount">Enter Amount*</label>
+                <input type="number" id="fund-amount" placeholder="Enter amount" required>
+            </div>
+    
+            <div class="funds-flex">
+                <div class="funds-input-group">
+                    <label for="fund-date">Date</label>
+                    <input type="date" id="fund-date" required>
+                </div>
+                <div class="funds-input-group">
+                    <label for="fund-time">Time</label>
+                    <input type="time" id="fund-time" required>
+                </div>
+            </div>
+            <div class="toast">please fill with valid information</div>
+            <button class="funds-btn" id="fundbtn">Deposit</button>
+        </div>
+    </section>
+
+
+
+
+    <section class="withdraw-section" id="withdraw">
+        <div class="withdraw-container">
+            <h2>Withdraw Funds</h2>
+            <div class="withdraw-input-group">
+                <label for="withdraw-receiver">Enter Account Number*</label>
+                <input type="text" id="withdraw-receiver" placeholder="Enter account number" required>
+            </div>
+            <div class="withdraw-input-group">
+                <label for="withdraw-amount">Enter Amount*</label>
+                <input type="number" id="withdraw-amount" placeholder="Enter amount" required>
+            </div>
+    
+            <div class="withdraw-flex">
+                <div class="withdraw-input-group">
+                    <label for="withdraw-date">Date</label>
+                    <input type="date" id="withdraw-date" required>
+                </div>
+                <div class="withdraw-input-group">
+                    <label for="withdraw-time">Time</label>
+                    <input type="time" id="withdraw-time" required>
+                </div>
+            </div>
+            <div class="toast">please fill with valid information</div>
+            <button class="withdraw-btn" id="withdrawbtn">Withdraw</button>
+        </div>
+    </section>
+    
+    <section class="moneytransfer-section" id="moneytransfer">
+        <div class="moneytransfer-container">
+            <h2>Money Transfer</h2>
+            <div class="moneytransfer-input-group">
+                <label for="sender-account">Sender Account Number*</label>
+                <input type="text" id="sender-account" placeholder="Enter sender account number" required>
+            </div>
+            <div class="moneytransfer-input-group">
+                <label for="receiver-account">Receiver Account Number*</label>
+                <input type="text" id="receiver-account" placeholder="Enter receiver account number" required>
+            </div>
+            <div class="moneytransfer-input-group">
+                <label for="moneytransfer-amount">Enter Amount*</label>
+                <input type="number" id="moneytransfer-amount" placeholder="Enter amount" required>
+            </div>
+    
+            <div class="moneytransfer-flex">
+                <div class="moneytransfer-input-group">
+                    <label for="moneytransfer-date">Date</label>
+                    <input type="date" id="moneytransfer-date" required>
+                </div>
+                <div class="moneytransfer-input-group">
+                    <label for="moneytransfer-time">Time</label>
+                    <input type="time" id="moneytransfer-time" required>
+                </div>
+            </div>
+            <div class="toast">please fill with valid information</div>
+            <button class="moneytransfer-btn" id="moneytransferbtn">Send</button>
+        </div>
+    </section>
+    
+
+<section class="wholewrapper" id="Transactiondiv">
+    
+    <div id="transactionWrapper">
+      
+
+</div>
+<div class="toast">please fill with valid information</div>
+</section>
+
+
+
+
+
+</div>
+
+
+
+<footer class="footer">
+    <div class="footer-section">
+        <h3>Disclaimer</h3>
+        <p>YES BANK will NEVER ask you to reveal your User ID or Password. Therefore, never disclose your credentials 
+        (User ID, Password, OTP, PIN etc.) to anyone either through mail or over phone. If you receive any mail asking 
+        you to update or authenticate your User ID or Password, please DO NOT fall into the trap of putting in your 
+        Password or OTP or PIN.</p>
+    </div>
+
+    <div class="footer-section">
+        <h3>Connect</h3>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+
+
+    <script>document.addEventListener("DOMContentLoaded", function () {
+        function transdata() {
+            fetch("/transactions-data")
+                .then(response => response.json())
+                .then(data => {
+                    const transactionWrapper = document.getElementById("transactionWrapper");
+                    if (!transactionWrapper) return console.error("Transaction wrapper not found!");
+    
+                    transactionWrapper.innerHTML = ""; // Clear previous content
+    
+                    if (data.transactions && data.transactions.length > 0) {
+                        // Show delete button only if there are transactions
+                        const deleteButton = document.createElement("p");
+                        deleteButton.id = "delete-tran";
+                        deleteButton.innerHTML = "<i class='fas fa-trash delete-icon'></i>";
+                        transactionWrapper.appendChild(deleteButton);
+    
+                        // Reverse the transactions array to display from last to first
+                        data.transactions.reverse().forEach(transaction => {
+                            const isCredit = transaction.includes("credited");
+                            const iconClass = isCredit ? "fa-arrow-down" : "fa-arrow-up";
+                            const transactionClass = isCredit ? "creditTransaction" : "debitTransaction";
+    
+                            // Extract transaction time from string
+                            const dateTimeMatch = transaction.match(/on (\d{4}-\d{2}-\d{2} at \d{2}:\d{2})/);
+                            const transactionTime = dateTimeMatch ? dateTimeMatch[1] : "";
+    
+                            // Create transaction entry
+                            const transactionEntry = `
+                                <div class="logEntry ${transactionClass}">
+                                    <div class="transactionIcon"><i class="fas ${iconClass}"></i></div>
+                                    <div class="transactionDetails">
+                                        <p class="transactionAmount">${transaction}</p>
+                                        <p class="transactionTime">On ${transactionTime}</p>
+                                    </div>
+                                </div>
+                            `;
+    
+                            transactionWrapper.innerHTML += transactionEntry;
+                        });
+    
+                        // Add event listener to delete transactions
+                        document.getElementById("delete-tran").addEventListener("click", function () {
+                            fetch("/delete-transactions", { method: "POST" })
+                                .then(response => response.json())
+                                .then(result => {
+                                    if (result.success) {
+                                                 
+    const toast = document.querySelector("#Transactiondiv .toast");
+    toast.innerHTML = `<span class='icon'>✔</span> All transaction has been deleted!`;
+toast.style.backgroundColor = "#dff0d8"; // Light green
+toast.style.color = "#3c763d"; 
+toast.classList.add("show");
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.add("hide");
+        setTimeout(() => {
+            toast.classList.remove("show", "hide");
+        }, 3500);
+    }, 4000);
+                                        transactionWrapper.innerHTML = "<center>No transactions available</center>";
+                                    } else {
+                                        alert("Error deleting transactions");
+                                    }
+                                })
+                                .catch(error => console.error("Error deleting transactions:", error));
+                        });
+    
+                    } else {
+                        // If no transactions, show "No transactions available" message
+                        transactionWrapper.innerHTML = "<center>No transactions available</center>";
+                    }
+                })
+                .catch(error => console.error("Error fetching transactions:", error));
+        }
+    
+        // Call the function initially
+        transdata();
+    
+        // Refresh transactions every 2 seconds
+        setInterval(transdata, 2000);
+    });
+    
+
+
+document.getElementById("moneytransferbtn").addEventListener("click", async function () {
+    const senderAccount = document.getElementById("sender-account").value;
+    const receiverAccount = document.getElementById("receiver-account").value;
+    const amount = document.getElementById("moneytransfer-amount").value;
+    const date = document.getElementById("moneytransfer-date").value;
+    const time = document.getElementById("moneytransfer-time").value;
+
+    if (!senderAccount || !receiverAccount || !amount || !date || !time) {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    const transferData = {
+        senderAccount,
+        receiverAccount,
+        amount,
+        date,
+        time
+    };
+
+    try {
+        const response = await fetch("/transferFunds", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(transferData)
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            
+            const toast = document.querySelector("#moneytransfer .toast");
+            toast.innerHTML = `<span class='icon'>✔</span> Transaction successful! ₹${amount} has been sent to account ${receiverAccount}!`;
+        toast.style.backgroundColor = "#dff0d8"; // Light green
+        toast.style.color = "#3c763d"; 
+        toast.classList.add("show");
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.add("hide");
+                setTimeout(() => {
+                    toast.classList.remove("show", "hide");
+                }, 3500);
+            }, 4000);
+        } else {
+            const toast = document.querySelector("#moneytransfer .toast");
+            toast.innerHTML = `<span class='icon'>⚠</span> please try again later!`;
+            toast.style.backgroundColor = "#f2dede"; // Light red
+            toast.style.color = "#a94442"; // Dark red
+            toast.classList.add("show");
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.add("hide");
+                setTimeout(() => {
+                    toast.classList.remove("show", "hide");
+                }, 3500);
+            }, 4000);
+        }
+    } catch (error) {
+        const toast = document.querySelector("#moneytransfer .toast");
+    toast.innerHTML = `<span class='icon'>⚠</span> please try again later!`;
+    toast.style.backgroundColor = "#f2dede"; // Light red
+    toast.style.color = "#a94442"; // Dark red
+    toast.classList.add("show");
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.add("hide");
+        setTimeout(() => {
+            toast.classList.remove("show", "hide");
+        }, 3500);
+    }, 4000);
+    }
+});
+
+
+
+
+document.getElementById("withdrawbtn").addEventListener("click", async function () {
+    const userAccount = document.getElementById("withdraw-receiver").value;
+    const amount = document.getElementById("withdraw-amount").value;
+    const date = document.getElementById("withdraw-date").value;
+    const time = document.getElementById("withdraw-time").value;
+
+    if (!userAccount || !amount || !date || !time) {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    const withdrawalData = {
+        userAccount,
+        amount,
+        date,
+        time
+    };
+
+    try {
+        const response = await fetch("/withdrawFunds", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(withdrawalData)
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            
+             
+    const toast = document.querySelector("#withdraw .toast");
+    toast.innerHTML = `<span class='icon'>✔</span> Withdrawal successful! ₹${amount} has been withdrawn from ${userAccount} account`;
+toast.style.backgroundColor = "#dff0d8"; // Light green
+toast.style.color = "#3c763d"; 
+toast.classList.add("show");
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.add("hide");
+        setTimeout(() => {
+            toast.classList.remove("show", "hide");
+        }, 3500);
+    }, 4000);
+        } else {
+            const toast = document.querySelector("#withdraw .toast");
+    toast.innerHTML = `<span class='icon'>⚠</span> please try again later!`;
+    toast.style.backgroundColor = "#f2dede"; // Light red
+    toast.style.color = "#a94442"; // Dark red
+    toast.classList.add("show");
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.add("hide");
+        setTimeout(() => {
+            toast.classList.remove("show", "hide");
+        }, 3500);
+    }, 4000);
+        }
+    } catch (error) {
+        const toast = document.querySelector("#withdraw .toast");
+    toast.innerHTML = `<span class='icon'>⚠</span> please try again later!`;
+    toast.style.backgroundColor = "#f2dede"; // Light red
+    toast.style.color = "#a94442"; // Dark red
+    toast.classList.add("show");
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.add("hide");
+        setTimeout(() => {
+            toast.classList.remove("show", "hide");
+        }, 3500);
+    }, 4000);
+    }
+});
+
+
+
+
+
+
+
+document.getElementById("fundbtn").addEventListener("click", async function () {
+    const receiverAccount = document.getElementById("fund-reciever").value;
+    const amount = document.getElementById("fund-amount").value;
+    const date = document.getElementById("fund-date").value;
+    const time = document.getElementById("fund-time").value;
+    const sender = "JohnDoe"; // Replace with actual sender (e.g., logged-in user)
+
+    if (!receiverAccount || !amount || !date || !time) {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    const transactionData = {
+
+        receiverAccount,
+        amount,
+        date,
+        time
+    };
+
+    try {
+        const response = await fetch("/addFunds", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(transactionData)
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            
+    const toast = document.querySelector("#addfunds .toast");
+    toast.innerHTML = `<span class='icon'>✔</span> Transaction successful! ₹${amount} has been sent to account ${receiverAccount}!`;
+toast.style.backgroundColor = "#dff0d8"; // Light green
+toast.style.color = "#3c763d"; 
+toast.classList.add("show");
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.add("hide");
+        setTimeout(() => {
+            toast.classList.remove("show", "hide");
+        }, 3500);
+    }, 4000);
+        } else {
+            const toast = document.querySelector("#addfunds .toast");
+    toast.innerHTML = `<span class='icon'>⚠</span> please try again later!`;
+    toast.style.backgroundColor = "#f2dede"; // Light red
+    toast.style.color = "#a94442"; // Dark red
+    toast.classList.add("show");
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.add("hide");
+        setTimeout(() => {
+            toast.classList.remove("show", "hide");
+        }, 3500);
+    }, 4000);
+        }
+    } catch (error) {
+        const toast = document.querySelector("#addfunds .toast");
+    toast.innerHTML = `<span class='icon'>⚠</span> please try again later!`;
+    toast.style.backgroundColor = "#f2dede"; // Light red
+    toast.style.color = "#a94442"; // Dark red
+    toast.classList.add("show");
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.add("hide");
+        setTimeout(() => {
+            toast.classList.remove("show", "hide");
+        }, 3500);
+    }, 4000);
+    }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("/user-list")
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let usersHTML = "";
+                const users = data.users;
+                const admin=users[0];
+    const adminprofile=document.getElementById("profileDropdown");
+ adminprofile.innerHTML=` <div class="profile" >
+        <img src="img/picture_pro.jpg" alt="Admin">
+        <span>Admin</span>
+    </div>
+    <p><strong>Name:</strong> ${admin.name}</p>
+    <p><strong>Username:</strong> ${admin.username}</p>
+    <p><strong>UPI ID:</strong> ${admin.upi_id}</p>
+    <p><strong>Account No:</strong> ${admin.account_number}</p>
+    <p><strong>Balance:</strong> ₹${admin.balance}</p>
+    
+    <a href="/" class="logout-btn">Log Out</a>`;
+
+                for (let i = 1; i < users.length; i++) {
+                    let user = users[i];
+
+                    usersHTML += `
+                        <div class="user" id="user-${user.username}">
+                            <h3>${user.name}</h3>
+                            <p><strong>Username:</strong> ${user.username}</p>
+                            <p><strong>Password:</strong> secret</p>
+                            <p><strong>Account No:</strong> ${user.account_number}</p>
+                            <p><strong>UPI ID:</strong> ${user.upi_id}</p>
+                            <p><strong>Balance:</strong> ₹${user.balance}</p>
+                            <i onclick="deleteUser('${user.username}')" class="fas fa-trash delete-icon"></i>
+                        </div>
+                    `;
+                }
+
+                document.getElementById("allusers").innerHTML = usersHTML;
+            } else {
+                const toast = document.querySelector("#userlist .toast");
+    toast.innerHTML = `<span class='icon'>⚠</span> server is not working please wait!`;
+    toast.style.backgroundColor = "#f2dede"; // Light red
+    toast.style.color = "#a94442"; // Dark red
+    toast.classList.add("show");
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.add("hide");
+        setTimeout(() => {
+            toast.classList.remove("show", "hide");
+        }, 3500);
+    }, 4000);
+            }
+        })
+        .catch(error => console.error("Error:", error));
+});
+
+
+
+function deleteUser(username) {
+    fetch('/delete-user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: username })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const toast = document.querySelector("#userlist .toast");
+        if (data.success) {
+            // Remove user from the DOM
+            document.getElementById(`user-${username}`).remove();
+            toast.innerHTML = "<span class='icon'>✔</span> user deleted successfully!";
+        toast.style.backgroundColor = "#dff0d8"; // Light green
+        toast.style.color = "#3c763d"; 
+        } else {
+            const toast = document.querySelector("#userlist .toast");
+    toast.innerHTML = `<span class='icon'>⚠</span> server is not working please wait!`;
+    toast.style.backgroundColor = "#f2dede"; // Light red
+    toast.style.color = "#a94442"; // Dark red
+    toast.classList.add("show");
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.add("hide");
+        setTimeout(() => {
+            toast.classList.remove("show", "hide");
+        }, 3500);
+    }, 4000);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
+
+          function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("active");
+        }
+        
+
+
+        function Banking(){
+            const createac = document.getElementById("createac");
+    const userlist = document.getElementById("userlist");
+    const addfunds = document.getElementById("addfunds");
+    const withdraw = document.getElementById("withdraw");
+    const moneytransfer= document.getElementById("moneytransfer");
+    const Transactiondiv= document.getElementById("Transactiondiv");
+    console.log("Switching to Create Account form...");
+    Transactiondiv.style.display = "flex";
+    moneytransfer.style.display = "none";
+    withdraw.style.display = "none";
+    createac.style.display = "none"; 
+    userlist.style.display = "none"; 
+    addfunds.style.display = "none"; 
+        }
+
+
+        function moneytns(){
+            const createac = document.getElementById("createac");
+    const userlist = document.getElementById("userlist");
+    const addfunds = document.getElementById("addfunds");
+    const withdraw = document.getElementById("withdraw");
+    const moneytransfer= document.getElementById("moneytransfer");
+    const Transactiondiv= document.getElementById("Transactiondiv");
+    console.log("Switching to Create Account form...");
+    Transactiondiv.style.display = "none";
+    moneytransfer.style.display = "flex";
+    withdraw.style.display = "none";
+    createac.style.display = "none"; 
+    userlist.style.display = "none"; 
+    addfunds.style.display = "none"; 
+        }
+
+
+function withdraw(){
+    const createac = document.getElementById("createac");
+    const userlist = document.getElementById("userlist");
+    const addfunds = document.getElementById("addfunds");
+    const withdraw = document.getElementById("withdraw");
+    const moneytransfer= document.getElementById("moneytransfer");
+    const Transactiondiv= document.getElementById("Transactiondiv");
+    console.log("Switching to Create Account form...");
+    Transactiondiv.style.display = "none";
+    moneytransfer.style.display = "none";
+    withdraw.style.display = "flex";
+    createac.style.display = "none"; 
+    userlist.style.display = "none"; 
+    addfunds.style.display = "none"; 
+}
+
+
+        function createAC(){
+            const createac = document.getElementById("createac");
+    const userlist = document.getElementById("userlist");
+    const addfunds = document.getElementById("addfunds");
+    const withdraw = document.getElementById("withdraw");
+    const moneytransfer= document.getElementById("moneytransfer");
+    const Transactiondiv= document.getElementById("Transactiondiv");
+    console.log("Switching to Create Account form...");
+    Transactiondiv.style.display = "none";
+    moneytransfer.style.display = "none";
+    withdraw.style.display = "none";
+    createac.style.display = "block"; 
+    userlist.style.display = "none"; 
+    addfunds.style.display = "none"; 
+}
+
+
+function addfunds(){
+    const createac = document.getElementById("createac");
+    const userlist = document.getElementById("userlist");
+    const addfunds = document.getElementById("addfunds");
+    const withdraw = document.getElementById("withdraw");
+    const moneytransfer= document.getElementById("moneytransfer");
+    const Transactiondiv= document.getElementById("Transactiondiv");
+    console.log("Switching to Create Account form...");
+    Transactiondiv.style.display = "none";
+    moneytransfer.style.display = "none";
+    withdraw.style.display = "none";
+    createac.style.display = "none"; 
+    userlist.style.display = "none"; 
+    addfunds.style.display = "flex"; 
+}
+
+
+function listUser(){
+    const createac = document.getElementById("createac");
+    const userlist = document.getElementById("userlist");
+    const addfunds = document.getElementById("addfunds");
+    const withdraw = document.getElementById("withdraw");
+    const moneytransfer= document.getElementById("moneytransfer");
+    const Transactiondiv= document.getElementById("Transactiondiv");
+    console.log("Switching to Create Account form...");
+    Transactiondiv.style.display = "none";
+    moneytransfer.style.display = "none";
+    withdraw.style.display = "none";
+    createac.style.display = "none"; 
+    userlist.style.display = "block"; 
+    addfunds.style.display = "none"; 
+}
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+    const menuLinks = document.querySelectorAll(".sidebar a");
+
+    menuLinks.forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            
+            // Get the next element after the <a>
+            let submenu = this.nextElementSibling;
+
+            // Check if the next element is a <ul> (submenu)
+            if (submenu && submenu.classList.contains("submenu")) {
+                // Hide all other submenus before opening the clicked one
+                document.querySelectorAll(".submenu").forEach(ul => {
+                    if (ul !== submenu) {
+                        ul.style.display = "none";
+                    }
+                });
+
+                // Toggle submenu visibility
+                submenu.style.display = (submenu.style.display === "block") ? "none" : "block";
+            }
+        });
+    });
+});
+
+
+document.getElementById("submit").addEventListener("click",()=>{
+
+const name=document.getElementById("name").value;
+const username=document.getElementById("username").value;
+const password=document.getElementById("password").value;
+const account_number=document.getElementById("account_number").value;
+const aadhaar=document.getElementById("aadhaar").value;
+const email=document.getElementById("email").value;
+const branch=document.getElementById("branch").value;
+const ifsc=document.getElementById("ifsc").value;
+
+fetch("/create-account", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ name, username, password, account_number, aadhaar, email, branch, ifsc })
+})
+.then(response => response.json())
+.then(data => {
+    const toast = document.querySelector(".toast");
+
+    if (data.error == "missing") {
+        toast.innerHTML = "<span class='icon'>⚠</span> Please fill with valid information!";
+        toast.style.backgroundColor = "#f2dede"; // Light red
+        toast.style.color = "#a94442"; // Dark red
+    }
+    else if (data.error == "exist") {
+        toast.innerHTML = "<span class='icon'>⚠</span> This account already exists!";
+        toast.style.backgroundColor = "#fcf8e3"; // Light yellow
+        toast.style.color = "#8a6d3b"; // Dark brown
+    }
+    else if (data.success == "account_created") {
+        toast.innerHTML = "<span class='icon'>✔</span> Account created successfully!";
+        toast.style.backgroundColor = "#dff0d8"; // Light green
+        toast.style.color = "#3c763d"; // Dark green
+    } else {
+        console.log("done");
+        return;
+    }
+
+    // Show Toast
+    toast.classList.add("show");
+
+    // Hide after 3 seconds with smooth fade-out
+    setTimeout(() => {
+        toast.classList.add("hide");
+
+        // Remove from DOM after fade-out completes
+        setTimeout(() => {
+            toast.classList.remove("show", "hide");
+        }, 3500);
+    }, 4000);
+});
+
+})
+
+
+
+
+
+
+
+function toggleProfile() {
+            document.getElementById("profileDropdown").classList.toggle("active");
+        }
+
+        // Hide dropdown when clicking outside
+        document.addEventListener("click", function(event) {
+            const profileDropdown = document.getElementById("profileDropdown");
+            const profileIcon = document.querySelector(".profile");
+
+            if (!profileIcon.contains(event.target) && !profileDropdown.contains(event.target)) {
+                profileDropdown.classList.remove("active");
+            }
+        });
+
+
+    </script>
+</body>
+</html>
