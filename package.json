@@ -32,5 +32,10 @@
     "uuid": "^10.0.0",
     "youtube-dl-exec": "^3.0.10",
     "ytdl-core": "^4.11.5"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "postinstall": "exit 0"
   }
 }
+
