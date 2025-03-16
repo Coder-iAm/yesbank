@@ -802,7 +802,7 @@ h2 {
 }
 
 .transactionAmount {
-    font-weight: bold;
+    font-size: 14px;
     color: #222;
 }
 
@@ -819,6 +819,15 @@ h2 {
 
     .transactionIcon {
         margin-bottom: 8px;
+    }
+    .transactionAmount {
+        font-size: 13px;
+        color: #222;
+    }
+    
+    .transactionTime {
+        font-size: 12px;
+        color: gray;
     }
 }
 
@@ -950,6 +959,7 @@ h2 {
 /*footer*/
 /* Footer */
 .footer {
+    margin-top: 8px;
     background-color: #0033cc; /* Blue background */
     color: white;
     padding: 20px 40px;

@@ -628,13 +628,15 @@ function deleteUser(username) {
     })
     .then(response => response.json())
     .then(data => {
-        const toast = document.querySelector("#userlist .toast");
+       
         if (data.success) {
             // Remove user from the DOM
+            const toast = document.querySelector("#userlist .toast");
             document.getElementById(`user-${username}`).remove();
             toast.innerHTML = "<span class='icon'>✔</span> user deleted successfully!";
         toast.style.backgroundColor = "#dff0d8"; // Light green
         toast.style.color = "#3c763d"; 
+        toast.classList.add("show");
         } else {
             const toast = document.querySelector("#userlist .toast");
     toast.innerHTML = `<span class='icon'>⚠</span> server is not working please wait!`;
