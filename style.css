@@ -265,7 +265,7 @@
     display: none;
     background: #fff;
     padding: 30px;
-   height: 60vh;
+   height: auto;
     border-radius: 10px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
     width: 50%;
@@ -343,7 +343,7 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .main-content {
-        height: 100vh;
+        height: auto;
         width: 80%;
         padding: 20px;
     }
