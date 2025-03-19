@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YesBank  Dashboard</title>
+    <link rel="stylesheet" href="styleii.css">
+    <link rel="icon" href="img/Logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- SBI Logo and Navbar Section -->
+    <div class="logo">
+        <img src="img/logo-dark.png" alt="YesBank Logo">
+
+        <img class="profilepic" src="img/empty.jpg" alt="profilepic">
+    </div>
+
+    <!-- Profile Popup -->
+    <div class="profile-popup" id="profilePopup">
+        <img src="img/empty.jpg" alt="Profile Image"
+            onerror="this.onerror=null; this.src='img/default_profile.jpg';">
+        <h4 class="nameofuser">${userData.name}</h4>
+        <p>Username : <span class="usernameof"> Username</span></p>
+        <p>Account No: <span class="acofuser"> ${userData.account_number}</span></p>
+        <p>UPI Id: <span class="upiofuser"> ${userData.upi_id}</span></p>
+        <p>Email: <span class="emailofuser"> ${userData.email}</span></p>
+        <a href="/" style="text-decoration: none;"><button class="log-out-btn" onclick="logout()">Log Out</button></a>
+    </div>
+
+    <!-- Rest of your HTML content -->
+
+
+    <header class="navbar">
+
+        <nav>
+            <ul>
+                <li><a href="#" id="homeLink">Home</a></li>
+                <li><a href="services">Services</a></li>
+                <li><a href="epaylite">ePay Lite</a></li>
+                <li><a href="donations">Donations</a></li>
+                <li><a href="privacy-policies">Privacy Policies</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="terms">Terms & Conditions</a></li>
+                <li><a href="YesBank-loan">YesBank Loans</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="wpanel_marquee">
+        <p>Customers can now make the GST payment using INB with extended time up to 23.00 hours.
+            &nbsp;&nbsp;|&nbsp;&nbsp; ACCOUNT OPENING IS NOW AVAILABLE ON YesBank - <a href="Login-page.html"
+                style="color: red;text-decoration: none;">Click
+                here</a> &nbsp;&nbsp;|&nbsp;&nbsp; Mandatory Profile password change after 365 days introduced for added
+            security. &nbsp;&nbsp;|&nbsp;&nbsp; Call us toll free on 1890 5434 and 5544 2222 and get a wide range of
+            services through YesBank Contact Centre. &nbsp;&nbsp;|&nbsp;&nbsp; YesBank never asks for your
+            Card/PIN/OTP/CVV
+            details on phone, message or email. Please do not click on links received on your email or mobile asking
+            your Bank/Card details.</p>
+    </div>
+
+
+
+    <!-- Quick Links Section -->
+    <div class="quick-links2">
+        <div><br></div>
+        <nav id="quicksec">
+            <ul>
+                <li><a href="#" onclick="showATMService()"><i class="fas fa-credit-card"></i> ATM Card Services</a></li>
+                <li><a href="#" onclick="checkBalance()"><i class="fas fa-balance-scale"></i> Check Balance</a></li>
+                <li><a href="#" onclick="sendMoney()"><i class="fas fa-money-check-alt"></i> Send Money</a></li>
+                <li><a href="#" onclick="withdrawBalance()"><i class="fas fa-arrow-alt-circle-down"></i>
+                        Withdraw/Debit</a></li>
+                <li><a href="#" onclick="addBalance()"><i class="fas fa-plus-circle"></i> Add Money/Deposit</a></li>
+                <li><a href="#" onclick="transactiondiv()"><i class="fa-solid fa-money-check"></i> Transactions</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <!-- Banking Sections -->
+    <section class="banking-section2" id="atmServiceSection">
+        <h2>ATM Card Limit/Channel/Usage Change</h2>
+        <div class="card-details2">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Card Number</th>
+                        <th>Card Holder Name</th>
+                        <th>Card Status</th>
+                        <th>Expiry Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="radio" name="cardSelection" value="card1"> XXXXXXXXXXXXXX</td>
+                        <td class="nameofuser"></td>
+                        <td>ACTIVE</td>
+                        <td>31-10-XXXX</td>
+                    </tr>
+                    <!-- Add more rows here if needed -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card-actions2">
+            <div>
+                <div class="form-group2">
+                    <label for="selectedCardNumber2">Selected Card Number</label>
+                    <input type="text" id="selectedCardNumber2" name="selectedCardNumber2" value="XXXXXXXXXXXXXX"
+                        readonly>
+                </div>
+
+                <div class="form-group2">
+                    <label for="serviceType2">Select Services</label>
+                    <select id="serviceType2" name="serviceType2">
+                        <option value="limitChange">Change Usage Type</option>
+                        <option value="channelLimit">Change Channel Limit</option>
+                        <option value="usageLimit">Change Usage Limit</option>
+                    </select>
+                </div>
+
+                <div class="form-group2">
+                    <button onclick="atmsubmit()" type="submit" class="submit-btn2">Submit</button>
+                    <button onclick="atmcancel()" type="button" class="cancel-btn2">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="banking-section2" id="sendmoneySection">
+        <h2>Send Money</h2>
+        <div class="card-details2">
+        </div>
+
+        <div class="card-actions2">
+            <form action="/send-money" method="post">
+                <div class="form-group2">
+                    <label for="selectedCardNumber2">Enter UPI Number</label>
+                    <input type="text" id="selectedCardNumber2" name="upiId" required>
+                </div>
+
+                <div class="form-group2">
+                    <label id="amounts" for="amount">Amount</label>
+                    <input type="number" id="amount" name="amount" required>
+                </div>
+
+                <div class="form-group2">
+                    <label for="serviceType2">From Account</label>
+                    <select id="serviceType2" name="serviceType2">
+                        <option value="limitChange" class="acofuser" selected>YesBank@${userData.account_number}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group2">
+                    <button type="submit" class="submit-btn2">Send</button>
+                    <button type="reset" class="cancel-btn2">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+
+
+    <section class="banking-section2" id="checkaccountSection">
+        <h2> Check Balance</h2>
+        <div class="card-details2">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Account Number</th>
+                        <th>Account Holder Name</th>
+                        <th>Balance</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="acofuser">${45777777777777445}</td>
+                        <td class="nameofuser">${sar dhjsjdj shsh}</td>
+                        <td class="current-balance">₹${3452645646456}</td>
+                    </tr>
+                    <!-- Add more rows here if needed -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card-actions2">
+        </div>
+    </section>
+
+
+
+
+    <!-- Check Balance Section -->
+    <section class="banking-section2 hidden" id="withdrawBalance2">
+        <h2>Withdraw/Debit</h2>
+        <div class="balance-details2">
+            <p>Your current account balance is: <strong style="color: rgb(0, 171, 0);"
+                    class="current-balance">₹${userData.balance}</strong></p>
+            <!-- Withdraw and Add Money Options -->
+            <div class="balance-actions2">
+                <form action="/user-withdraw-money" method="post" class="action-form2">
+                    <div class="form-group2">
+                        <label for="withdrawAmount2">Withdraw Amount:</label>
+                        <input type="number" id="withdrawAmount2" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="form-group2" style="display: flex;justify-content: center;">
+                        <button type="submit" class="withdraw-btn2">Withdraw</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="banking-section2 hidden" id="addBalance3">
+        <h2>Add Money/Deposit</h2>
+        <div class="balance-details2">
+            <p>Your current account balance is: <strong style="color: rgb(0, 171, 0); "
+                    class="current-balance">₹${userData.balance}</strong></p>
+            <!-- Withdraw and Add Money Options -->
+            <div class="balance-actions2">
+                <form action="/user-add-money" method="post" class="action-form2">
+                    <div class="form-group2">
+                        <label for="addMoneyAmount2">Add Money:</label>
+                        <input type="number" id="addMoneyAmount2" name="amount" placeholder="Enter amount">
+                    </div>
+                    <div class="form-group2" style="display: flex;justify-content: center;">
+                        <button type="submit" class="add-money-btn2">Add Money</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="wholewrapper" id="Transactiondiv">
+    
+        <div id="transactionWrapper">
+          
+
+    
+    </div>
+    <div class="toast">please fill with valid information</div>
+    </section>
+
+
+    <!-- More Useful Links Section -->
+    <div class="useful-links">
+
+        <h2>Online Banking Securities</h2>
+        <p class="new">
+            YesBank offers a secure online banking platform that prioritizes the safety of your financial transactions.
+            With advanced encryption technology, you can confidently manage your accounts, transfer funds, and
+            access various banking services from the comfort of your home. YesBank also provides robust security
+            measures, including two-factor authentication, to protect against unauthorized access. Furthermore,
+            the bank continuously monitors transactions for suspicious activity, ensuring your account is safe.
+            With features like alerts for unusual transactions and the ability to lock your card instantly,
+            YesBank makes online banking not only convenient but also secure. The integration of securities
+            services allows customers to invest and manage their portfolios seamlessly online, giving them
+            comprehensive control over their finances. Whether you're using your mobile device or desktop,
+            YesBank ensures that your online banking experience is secure and efficient.
+        </p>
+        <h2>How to Use</h2>
+        <div class="how-to-use">
+            <p>
+                Using YesBank online banking is a straightforward process designed for user convenience. To get started,
+                you need to register for online banking by visiting the YesBank website. Click on the "New User
+                Registration" button
+                and follow the prompts to create your account. You’ll need to provide personal information such as your
+                name, email address, and account details for verification purposes. After registration, you will receive
+                a confirmation email that allows you to set up your account.
+
+                Once you have your login credentials, visit the YesBank online banking dashboard and log in with your
+                username and password. The dashboard provides easy navigation to various banking services, including
+                checking your balance and making fund transfers.
+
+                For enhanced security, auto enabled two-factor authentication, which adds an extra layer of
+                protection to your account. This feature requires a verification code sent to your registered mobile
+                number during login. Additionally, regularly monitor your account activity and report any suspicious
+                transactions to YesBank immediately.
+
+                To use the investment services, navigate to the securities section where you can view available options
+                and make transactions. YesBank provides tools and resources to help you make informed investment
+                decisions.
+                Take advantage of their research and analytics tools to track your investments and explore new
+                opportunities.
+                Whether you’re managing personal finances or investing for the future, YesBank online banking offers
+                a user-friendly platform that prioritizes security and convenience.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-section">
+            <h3>Disclaimer</h3>
+            <p>YES BANK will NEVER ask you to reveal your User ID or Password. Therefore, never disclose your
+                credentials
+                (User ID, Password, OTP, PIN etc.) to anyone either through mail or over phone. If you receive any mail
+                asking
+                you to update or authenticate your User ID or Password, please DO NOT fall into the trap of putting in
+                your
+                Password or OTP or PIN.</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Connect</h3>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+        function transdata() {
+            fetch("/transactions-data")
+                .then(response => response.json())
+                .then(data => {
+                    const transactionWrapper = document.getElementById("transactionWrapper");
+                    if (!transactionWrapper) return console.error("Transaction wrapper not found!");
+    
+                    transactionWrapper.innerHTML = ""; // Clear previous content
+    
+                    if (data.transactions && data.transactions.length > 0) {
+                        // Show delete button only if there are transactions
+                        const deleteButton = document.createElement("p");
+                        deleteButton.id = "delete-tran";
+                        deleteButton.innerHTML = "<i class='fas fa-trash delete-icon'></i>";
+                        transactionWrapper.appendChild(deleteButton);
+    
+                        // Reverse the transactions array to display from last to first
+                        data.transactions.reverse().forEach(transaction => {
+                            const isCredit = transaction.includes("credited");
+                            const iconClass = isCredit ? "fa-arrow-down" : "fa-arrow-up";
+                            const transactionClass = isCredit ? "creditTransaction" : "debitTransaction";
+    
+                            // Extract transaction time from string
+                            const dateTimeMatch = transaction.match(/on (\d{4}-\d{2}-\d{2} at \d{2}:\d{2})/);
+                            const transactionTime = dateTimeMatch ? dateTimeMatch[1] : "";
+    
+                            // Create transaction entry
+                            const transactionEntry = `
+                                <div class="logEntry ${transactionClass}">
+                                    <div class="transactionIcon"><i class="fas ${iconClass}"></i></div>
+                                    <div class="transactionDetails">
+                                        <p class="transactionAmount">${transaction}</p>
+                                        <p class="transactionTime">On ${transactionTime}</p>
+                                    </div>
+                                </div>
+                            `;
+    
+                            transactionWrapper.innerHTML += transactionEntry;
+                        });
+    
+                        // Add event listener to delete transactions
+                        document.getElementById("delete-tran").addEventListener("click", function () {
+                            fetch("/delete-transactions", { method: "POST" })
+                                .then(response => response.json())
+                                .then(result => {
+                                    if (result.success) {
+                                                 
+    const toast = document.querySelector("#Transactiondiv .toast");
+    toast.innerHTML = `<span class='icon'>✔</span> All transaction has been deleted!`;
+toast.style.backgroundColor = "#dff0d8"; // Light green
+toast.style.color = "#3c763d"; 
+toast.classList.add("show");
+    // Hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.add("hide");
+        setTimeout(() => {
+            toast.classList.remove("show", "hide");
+        }, 3500);
+    }, 4000);
+                                        transactionWrapper.innerHTML = "<center>No transactions available</center>";
+                                    } else {
+                                        alert("Error deleting transactions");
+                                    }
+                                })
+                                .catch(error => console.error("Error deleting transactions:", error));
+                        });
+    
+                    } else {
+                        // If no transactions, show "No transactions available" message
+                        transactionWrapper.innerHTML = "<center>No transactions available</center>";
+                    }
+                })
+                .catch(error => console.error("Error fetching transactions:", error));
+        }
+    
+        // Call the function initially
+        transdata();
+    
+        // Refresh transactions every 2 seconds
+        setInterval(transdata, 2000);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+            fetch("/user-info-dash")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const user = data.users[0];
+                         
+                        const name = document.querySelectorAll(".nameofuser");
+                        const currentBalance = document.querySelectorAll(".current-balance");
+                        const username = document.querySelectorAll(".usernameof");
+                        const useraccount = document.querySelectorAll(".acofuser");
+                        const useremail = document.querySelectorAll(".emailofuser");
+                        const userupi = document.querySelectorAll(".upiofuser");
+
+                        // Update name
+                        name.forEach(element => {
+                            element.innerHTML = user.name;
+                        });
+
+                        // Update username
+                        username.forEach(element => {
+                            element.innerHTML = user.username;
+                        });
+
+                        // Update account number
+                        useraccount.forEach(element => {
+                            element.innerHTML = user.account_number;
+                        });
+
+                        // Update email
+                        useremail.forEach(element => {
+                            element.innerHTML = user.email;
+                        });
+
+                        // Update UPI ID
+                        userupi.forEach(element => {
+                            element.innerHTML = user.upi_id;
+                        });
+
+                        // Update current balance
+                        currentBalance.forEach(element => {
+                            element.innerHTML = `₹${user.balance}`;
+                        });
+                    }
+                    else {
+                        alert("Unauthorized access!");
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+
+        })
+
+
+        
+        // Show the ATM Service Section initially
+        document.getElementById('atmServiceSection').style.display = 'block';
+        document.getElementById('addBalance3').style.display = 'none';
+        document.getElementById('withdrawBalance2').style.display = 'none';
+        document.getElementById('sendmoneySection').style.display = 'none';
+        document.getElementById('checkaccountSection').style.display = 'none';
+        document.getElementById('Transactiondiv').style.display = 'none';
+        // Function to show the ATM service section
+
+      function  transactiondiv(){
+        document.getElementById('atmServiceSection').style.display = 'none';
+            document.getElementById('addBalance3').style.display = 'none';
+            document.getElementById('withdrawBalance2').style.display = 'none';
+            document.getElementById('sendmoneySection').style.display = 'none';
+            document.getElementById('checkaccountSection').style.display = 'none';
+            document.getElementById('Transactiondiv').style.display = 'flex';
+        }
+
+
+
+        function showATMService() {
+            document.getElementById('atmServiceSection').style.display = 'block';
+            document.getElementById('addBalance3').style.display = 'none';
+            document.getElementById('withdrawBalance2').style.display = 'none';
+            document.getElementById('sendmoneySection').style.display = 'none';
+            document.getElementById('checkaccountSection').style.display = 'none';
+            document.getElementById('Transactiondiv').style.display = 'none';
+        }
+
+        // Function to add balance
+        function addBalance() {
+            document.getElementById('atmServiceSection').style.display = 'none';
+            document.getElementById('addBalance3').style.display = 'block';
+            document.getElementById('withdrawBalance2').style.display = 'none';
+            document.getElementById('sendmoneySection').style.display = 'none';
+            document.getElementById('checkaccountSection').style.display = 'none';
+            document.getElementById('Transactiondiv').style.display = 'none';
+        }
+
+        // Function to withdraw balance
+        function withdrawBalance() {
+            document.getElementById('atmServiceSection').style.display = 'none';
+            document.getElementById('addBalance3').style.display = 'none';
+            document.getElementById('withdrawBalance2').style.display = 'block';
+            document.getElementById('sendmoneySection').style.display = 'none';
+            document.getElementById('checkaccountSection').style.display = 'none';
+            document.getElementById('Transactiondiv').style.display = 'none';
+        }
+
+        // Function to check balance
+        function checkBalance() {
+            document.getElementById('atmServiceSection').style.display = 'none';
+            document.getElementById('addBalance3').style.display = 'none';
+            document.getElementById('withdrawBalance2').style.display = 'none';
+            document.getElementById('sendmoneySection').style.display = 'none';
+            document.getElementById('checkaccountSection').style.display = 'block';
+            document.getElementById('Transactiondiv').style.display = 'none';
+        }
+
+        // Function to send money
+        function sendMoney() {
+            document.getElementById('atmServiceSection').style.display = 'none';
+            document.getElementById('addBalance3').style.display = 'none';
+            document.getElementById('withdrawBalance2').style.display = 'none';
+            document.getElementById('sendmoneySection').style.display = 'block';
+            document.getElementById('checkaccountSection').style.display = 'none';
+            document.getElementById('Transactiondiv').style.display = 'none';
+        }
+
+        // Profile popup toggle
+        const profilePic = document.querySelector('.profilepic');
+        const profilePopup = document.getElementById('profilePopup');
+
+        profilePic.addEventListener('click', function () {
+            profilePopup.style.display = (profilePopup.style.display === 'none' || profilePopup.style.display === '') ? 'block' : 'none';
+        });
+
+        // Close the popup when clicking outside
+        window.addEventListener('click', function (e) {
+            if (!profilePopup.contains(e.target) && !profilePic.contains(e.target)) {
+                profilePopup.style.display = 'none';
+            }
+        });
+
+        // Log out function
+        function logout() {
+            alert('Logging out...');
+            // Add actual log-out logic here
+        }
+
+        function atmcancel() {
+            alert("The processing has been canceled.");
+        }
+
+        function atmsubmit() {
+            alert("The ATM service has been changed.");
+        }
+        document.getElementById('homeLink').addEventListener('click', function () {
+            window.location.href = '/dashboard';
+        });
+    </script>
+</body>
+
+</html>

@@ -42,11 +42,18 @@ connection.connect((err) => {
 });
 
 app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/user-login.html");
+
+})
+app.get("/yes-admin", (req, res) => {
     res.sendFile(__dirname + "/home.html");
 
 })
 app.get("/style.css", (req, res) => {
     res.sendFile(__dirname + "/style.css");
+})
+app.get("/styleii.css", (req, res) => {
+    res.sendFile(__dirname + "/styleii.css");
 })
 
 
@@ -70,8 +77,8 @@ app.post("/admin-login", (req, res) => {
 
 })
 
-app.get("/dashboard", (req, res) => {
-    if(req.session.user){
+app.get("/dashboard-admin", (req, res) => {
+    if(req.session.user=="admin123"){
     res.sendFile(__dirname + "/dashboard.html");
     }
     else{
@@ -392,7 +399,315 @@ app.post("/delete-transactions", (req, res) => {
 
 
 
+
+
+
+
+//user-dash
+
+app.get("/user-login", (req, res) => {
+    res.sendFile(__dirname + "/user-login.html");
+
+})
+
+
+app.post("/user-login-page", (req, res) => {
+
+    const username = req.body.username;
+    const password = req.body.password;
+    if(username=="admin123" && password=="admin@pass"){
+      return  res.json({err:"warning"});
+    }
+    const query = 'SELECT * FROM BankUser WHERE username = ? AND password = ?';
+    connection.query(query, [username, password], (err, results) => {
+        if (err || results.length === 0) {
+            res.json({err:"invalid"});
+        }
+      else {
+    
+            req.session.user = results[0].username; 
+            res.json({success:"done"});
+        }
+    });
+
+})
+
+
+
+
+app.get("/user-info-dash",(req,res)=>{
+
+    if(req.session.user){
+        const user=req.session.user;
+      const quary="SELECT * FROM BankUser WHERE username = ?"
+      connection.query(quary,[user], (err, results) => {
+          if (err) {
+              console.error(err);
+              return res.status(500).json({ success: false, message: "Database error" });
+          }
+          res.json({ success: true, users: results });
+      });
+  } else {
+      res.status(403).json({ success: false, message: "Unauthorized" });
+  }
+
+})
+
+
+
+
+app.get("/user-dashboard", (req, res) => {
+    if(req.session.user){
+    res.sendFile(__dirname + "/user-dashboard.html");
+    }
+    else{
+        res.redirect("/");
+    }
+})
+
+
+
+
+
+
+
+
+
+// add money 
+
+app.post('/user-add-money', (req, res) => {
+    const { amount } = req.body;
+    const user = req.session.user;
+
+    // Convert amount to number and validate
+    const amountNum = Number(amount);
+    if (isNaN(amountNum) || amountNum <= 0) {
+        return res.status(400).json({ success: false, message: "Invalid amount" });
+    }
+
+    // Update balance in database
+    const sql = `UPDATE BankUser SET balance = balance + ? WHERE username = ?`;
+    connection.query(sql, [amountNum, user], (err, results) => {
+        if (err) {
+            console.error('Error updating balance: ', err);
+            return res.status(500).send('Server error.');
+        }
+
+        // Fetch updated balance and update transactions
+        const userSql = `SELECT balance FROM BankUser WHERE username = ?`;
+        connection.query(userSql, [user], (userErr, userResults) => {
+            if (userErr || userResults.length === 0) {
+                console.error('Error fetching user details: ', userErr);
+                return res.status(500).send('Server error.');
+            }
+
+            let transactionText = `${amountNum} debited by you to your account`;
+
+            // Update transaction history
+            const transactionSql = `UPDATE BankUser SET transactions = JSON_ARRAY_APPEND(transactions, '$', ?) WHERE username = ?`;
+            connection.query(transactionSql, [transactionText, user], (transErr) => {
+                if (transErr) {
+                    console.error('Error updating transaction: ', transErr);
+                    return res.status(500).send('Server error.');
+                }
+
+                res.sendFile(__dirname + "/addmoney.html");
+            });
+        });
+    });
+});
+
+
+
+
+
+
+app.post('/user-withdraw-money', (req, res) => {
+    const { amount } = req.body;
+    const user = req.session.user;
+
+    // Convert amount to number and validate
+    const amountNum = Number(amount);
+    if (isNaN(amountNum) || amountNum <= 0) {
+        return res.status(400).json({ success: false, message: "Invalid amount" });
+    }
+
+    // Fetch user balance
+    const balanceQuery = `SELECT balance FROM BankUser WHERE username = ?`;
+    connection.query(balanceQuery, [user], (err, results) => {
+        if (err || results.length === 0) {
+            console.error('Error fetching balance: ', err);
+            return res.status(500).send('Server error.');
+        }
+
+        let currentBalance = Number(results[0].balance || 0);
+        if (currentBalance < amountNum) {
+            return res.status(400).json({ success: false, message: "Insufficient balance" });
+        }
+
+        let newBalance = currentBalance - amountNum;
+        let transactionText = `${amountNum} withdrawn from your account`;
+
+        // Update balance
+        const updateBalanceQuery = `UPDATE BankUser SET balance = ? WHERE username = ?`;
+        connection.query(updateBalanceQuery, [newBalance, user], (updateErr) => {
+            if (updateErr) {
+                console.error('Error updating balance: ', updateErr);
+                return res.status(500).send('Server error.');
+            }
+
+            // Update transaction history
+            const updateTransactionQuery = `UPDATE BankUser SET transactions = JSON_ARRAY_APPEND(transactions, '$', ?) WHERE username = ?`;
+            connection.query(updateTransactionQuery, [transactionText, user], (transErr) => {
+                if (transErr) {
+                    console.error('Error updating transaction: ', transErr);
+                    return res.status(500).send('Server error.');
+                }
+
+                res.sendFile(__dirname + "/withdrawmoney.html");
+            });
+        });
+    });
+});
+
+app.post("/send-money", (req, res) => {
+    const { upiId, amount } = req.body;
+    const sender = req.session.user;
+
+    const amountNum = Number(amount);
+    if (isNaN(amountNum) || amountNum <= 0) {
+        return res.status(400).json({ success: false, message: "Invalid amount" });
+    }
+
+    const date = new Date().toISOString().split("T")[0]; // Get current date
+    const time = new Date().toLocaleTimeString(); // Get current time
+
+    // Fetch sender balance
+    connection.query("SELECT balance FROM BankUser WHERE username = ?", [sender], (err, senderResult) => {
+        if (err || senderResult.length === 0) {
+            return res.status(500).json({ success: false, message: "Error fetching sender balance" });
+        }
+
+        let senderBalance = Number(senderResult[0].balance || 0);
+        if (senderBalance < amountNum) {
+            return res.status(400).json({ success: false, message: "Insufficient funds" });
+        }
+
+        let newSenderBalance = senderBalance - amountNum;
+        let senderTransactionText = `${amountNum} debited from your account to ${upiId} on ${date} at ${time}`;
+
+        // Update sender balance and transaction
+        connection.query(
+            "UPDATE BankUser SET balance = ?, transactions = IF(transactions IS NULL, JSON_ARRAY(?), JSON_ARRAY_APPEND(transactions, '$', ?)) WHERE username = ?",
+            [newSenderBalance, senderTransactionText, senderTransactionText, sender],
+            (err) => {
+                if (err) return res.status(500).json({ success: false, message: "Error updating sender balance" });
+
+                // Fetch receiver details
+                connection.query("SELECT username, balance FROM BankUser WHERE upi_id = ?", [upiId], (err, receiverResult) => {
+                    if (err || receiverResult.length === 0) {
+                        return res.status(404).json({ success: false, message: "Receiver not found" });
+                    }
+
+                    const receiver = receiverResult[0].username;
+                    let receiverBalance = Number(receiverResult[0].balance || 0);
+                    let newReceiverBalance = receiverBalance + amountNum;
+                    let receiverTransactionText = `${amountNum} credited to your account by ${sender} on ${date} at ${time}`;
+
+                    // Update receiver balance and transaction
+                    connection.query(
+                        "UPDATE BankUser SET balance = ?, transactions = IF(transactions IS NULL, JSON_ARRAY(?), JSON_ARRAY_APPEND(transactions, '$', ?)) WHERE username = ?",
+                        [newReceiverBalance, receiverTransactionText, receiverTransactionText, receiver],
+                        (err) => {
+                            if (err) return res.status(500).json({ success: false, message: "Error updating receiver balance" });
+
+                            // Send the sendmoney.html page after a successful transaction
+                            res.sendFile(__dirname + "/sendmoney.html");
+                        }
+                    );
+                });
+            }
+        );
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get('/about', (req, res) => {
+
+    res.sendFile(__dirname+"/about.html");
+});
+
+
+
+
+app.get('/services', (req, res) => {
+
+    res.sendFile(__dirname+"/services.html");
+});
+
+
+app.get('/epaylite', (req, res) => {
+
+    res.sendFile(__dirname+"/epaylite.html");
+});
+
+
+
+
+app.get('/donations', (req, res) => {
+
+    res.sendFile(__dirname+"/donations.html");
+});
+
+
+
+app.get('/privacy-policies', (req, res) => {
+
+    res.sendFile(__dirname+"/privacy.html");
+});
+
+
+app.get('/terms', (req, res) => {
+    
+    res.sendFile(__dirname+"/terms.html");
+});
+
+
+
+app.get('/YesBank-loan', (req, res) => {
+  
+    res.sendFile(__dirname+"/YB-loan.html");
+});
+
+
+
+
+
+
+
+
+
+
+
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
+
+
+
+

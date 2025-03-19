@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YES BANK Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/Logo.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="user-login-body">
+    <div class="user-container">
+        <div class="login-section">
+            <img src="img/logo-dark.png" alt="YES BANK Online" class="userdash"> <!-- Add your logo manually -->
+            <div class="login-box">
+                <label for="login-id">Login ID</label>
+                <input type="text" name="userid" id="login-id" placeholder="Please enter here" required> 
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Please enter here" required>
+                <button  class="login-btn" id="userloginbtn">LOGIN</button>
+                <div class="links">
+                    <a href="#">Forgot Login ID</a> | <a href="#">Unlock Login ID</a> | <a href="#">Forgot Password</a>
+                    <br>
+                    <a href="#">Forgot Security Question & Answer</a>
+                    <p>Not Registered with NetBanking? <a href="#">Register Here</a></p>
+                    <p>Need Help? <a href="#">See FAQs</a></p>
+                </div>
+                <div class="toast">please fill with valid information</div>
+            </div>
+            <div class="services">
+                <button>Open Savings Account Digitally</button>
+                <button>Generate/Regenerate Credit Card PIN</button>
+                <button>Generate/Regenerate Debit Card PIN</button>
+                <button>Claim Money</button>
+            </div>
+        </div>
+        <div class="awareness-section">
+            <img src="img/yes-bank-ad.jpg" alt="RBI Awareness Campaign"> <!-- Add the awareness image manually -->
+        </div>
+    </div>
+    </div>
+
+
+
+    <script>
+
+        document.getElementById("userloginbtn").addEventListener("click", () => {
+            // Get values from input fields
+            const username = document.getElementById("login-id").value;
+            const password = document.getElementById("password").value;
+        
+            fetch("/user-login-page", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, password }) // Now values are correctly sent
+            })
+            .then(response => response.json())
+            .then(data => {
+                const toast = document.querySelector(".toast");
+        
+                if (data.err === "invalid") {
+                    toast.innerHTML = "<span class='icon'>⚠</span> Username or password is incorrect!";
+                    toast.style.backgroundColor = "#f2dede"; // Light red
+                    toast.style.color = "#a94442"; // Dark red
+                    toast.classList.add("show");
+        
+                    // Hide after 3 seconds
+                    setTimeout(() => {
+                        toast.classList.add("hide");
+                        setTimeout(() => {
+                            toast.classList.remove("show", "hide");
+                        }, 3500);
+                    }, 4000);
+                } 
+               else if (data.err === "warning") {
+                    toast.innerHTML = "<span class='icon'>⚠</span> Warning! you are not an admin";
+                    toast.style.backgroundColor = "#f2dede"; // Light red
+                    toast.style.color = "#a94442"; // Dark red
+                    toast.classList.add("show");
+        
+                    // Hide after 3 seconds
+                    setTimeout(() => {
+                        toast.classList.add("hide");
+                        setTimeout(() => {
+                            toast.classList.remove("show", "hide");
+                        }, 3500);
+                    }, 4000);
+                } 
+                else if (data.success === "done") {
+                    window.location.href = "/user-dashboard"; // Redirect to dashboard
+                } 
+                else {
+                    console.log("Unexpected response");
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        });
+        
+            </script>
+</body>
+</html>

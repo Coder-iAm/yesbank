@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ePaylite</title>
+    <link rel="stylesheet" href="styleii.css">
+        <link rel="icon" href="img/Logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- SBI Logo and Navbar Section -->
+    <div class="logo">
+        <img src="img/logo-dark.png" alt="YesBank Logo">
+
+    </div>
+
+   <header class="navbar">
+
+        <nav>
+           <ul>
+                <li><a href="#" id="homeLink">Home</a></li>
+                <li><a href="services">Services</a></li>
+                <li><a href="epaylite">ePay Lite</a></li>
+                <li><a href="donations">Donations</a></li>
+                <li><a href="privacy-policies">Privacy Policies</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="terms">Terms & Conditions</a></li>
+                <li><a href="YesBank-loan">YesBank Loans</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Add more div -->
+    
+    <section class="epaylite-section">
+        <div class="container">
+            <div class="image-section">
+                <img src="img/-banking.jpg" alt="EpayLite in YesBank"> <!-- Add your image here -->
+            </div>
+            <div class="content-section">
+                <h2>Check EpayLite in YesBank</h2>
+                <p>
+                    YesBank Bank is excited to introduce EpayLite, a simplified and secure way to manage your online payments. Whether you're an individual making everyday transactions or a business handling larger payments, EpayLite offers a seamless experience that prioritizes security and efficiency. With our innovative platform, you can process payments quickly and with confidence, knowing that YesBank' trusted technology is ensuring that every transaction is safeguarded.
+                </p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Simple, secure, and fast payment processing.</li>
+                    <li><i class="fas fa-check-circle"></i> Support for multiple currencies and international transactions.</li>
+                    <li><i class="fas fa-check-circle"></i> Real-time tracking and detailed transaction reports.</li>
+                    <li><i class="fas fa-check-circle"></i> Low transaction fees for both local and global payments.</li>
+                    <li><i class="fas fa-check-circle"></i> 24/7 customer support for all payment-related inquiries.</li>
+                </ul>
+                
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section -->
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-section">
+            <h3>Disclaimer</h3>
+            <p>YES BANK will NEVER ask you to reveal your User ID or Password. Therefore, never disclose your
+                credentials
+                (User ID, Password, OTP, PIN etc.) to anyone either through mail or over phone. If you receive any mail
+                asking
+                you to update or authenticate your User ID or Password, please DO NOT fall into the trap of putting in
+                your
+                Password or OTP or PIN.</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Connect</h3>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+      <script>
+
+  document.getElementById('homeLink').addEventListener('click', function(event) {
+        event.preventDefault();  // Prevent default navigation
+     // Get email from hidden input
+        window.location.href = '/user-dashboard';  // Redirect to dashboard with email
+    });
+    </script>
+</body>
+
+</html>

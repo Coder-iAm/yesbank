@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+                    <html lang="en">
+                    
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Transaction Confirmation</title>
+                            <link rel="icon" href="uploads/Logo.ico" type="image/x-icon">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Link to Font Awesome -->
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                background-color: #ffffff;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                height: 100vh;
+                                margin: 0;
+                            }
+                    
+                            .container {
+                                text-align: center;
+                            }
+                    
+                            .checkmark-circle {
+                                width: 100px;
+                                height: 100px;
+                                border-radius: 50%;
+                                border: 2px dashed #3a8b51f0; /* Adjust color to match image */
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                margin-bottom: 20px;
+                                background-color: white; /* Optional: add background for better visibility */
+                                position: relative;
+                            }
+                    
+                            .checkmark {
+                                color: #6bf72a; /* Green color for the checkmark */
+                                font-size: 48px; /* Adjust size as needed */
+                                opacity: 0; /* Start invisible */
+                                transform: scale(0); /* Start scaled down */
+                                animation: checkmark-animation 2.0s forwards; /* Trigger animation */
+                            }
+                    
+                            @keyframes checkmark-animation {
+                                0% {
+                                    opacity: 0;
+                                    transform: scale(0);
+                                }
+                                50% {
+                                    opacity: 1;
+                                    transform: scale(1.2); /* Slightly scale up */
+                                }
+                                100% {
+                                    opacity: 1;
+                                    transform: scale(1); /* Set to original size */
+                                }
+                            }
+                    
+                            h1 {
+                                color: #76b852; /* Adjust color to match image */
+                                font-size: 24px;
+                            }
+                    
+                            p {
+                                color: #a9a9a9; /* Adjust color to match image */
+                                font-size: 16px;
+                            }
+                    
+                            /* Style for the 'Done' button */
+                            .done-btn {
+                                padding: 10px 20px;
+                                font-size: 16px;
+                                color: white;
+                                background-color: #007bff; /* Blue background */
+                                border: 2px solid #007bff; /* Blue border */
+                                border-radius: 2px; /* 2px border radius */
+                                cursor: pointer;
+                                margin-top: 20px;
+                                text-decoration: none;
+                                display: inline-block;
+                            }
+                    
+                            .done-btn:hover {
+                                background-color: #0056b3; /* Darker blue on hover */
+                                border-color: #0056b3;
+                            }
+                        </style>
+                    </head>
+                    
+                    <body>
+                        <div class="container">
+                            <center>
+                                <div class="checkmark-circle">
+                                    <i class="fas fa-check checkmark"></i>
+                                </div>
+                            </center>
+                            <h1>Payment Completed!</h1>
+                            <p>You can verify your account balance</p>
+                            <button class="done-btn" id="doneBtn">Done</button>
+                        </div>
+                        <script>
+                            document.getElementById('doneBtn').addEventListener('click', function() {
+                                // Redirect to the dashboard using GET method with email as query parameter
+                                window.location.href = '/user-dashboard';
+                            });
+                        </script>
+                    </body>
+                    </html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YesBank Banking Services</title>
+        <link rel="icon" href="img/Logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styleii.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- SBI Logo and Navbar Section -->
+  <!-- SBI Logo and Navbar Section -->
+  <div class="logo">
+    <img src="img/logo-dark.png" alt="YesBank Logo">
+
+</div>
+   <header class="navbar">
+
+        <nav>
+          <ul>
+                <li><a href="#" id="homeLink">Home</a></li>
+                <li><a href="services">Services</a></li>
+                <li><a href="epaylite">ePay Lite</a></li>
+                <li><a href="donations">Donations</a></li>
+                <li><a href="privacy-policies">Privacy Policies</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="terms">Terms & Conditions</a></li>
+               
+                <li><a href="YesBank-loan">YesBank Loans</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Add more div -->
+    
+    <section class="service-section">
+        <div class="container">
+            <div class="image-section">
+                <img src="img/service.jpg" alt="YesBank Services"> <!-- Add your image here -->
+            </div>
+            <div class="content-section">
+                <h2>YesBank Services</h2>
+                <p>
+                    At YesBank, we offer a range of services designed to make your banking experience seamless and efficient. Whether you're looking to open a new account, send or add money, or utilize our ATM services, we have you covered. Our commitment to customer satisfaction means that we provide a secure and user-friendly platform for all your banking needs.
+                </p>
+                <p>
+                    Here’s what you can expect from our services:
+                </p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> New Account Open: Easily set up a new account by visiting our bank.</li>
+                    <li><i class="fas fa-check-circle"></i> Send Money: Quickly transfer funds to friends and family.</li>
+                    <li><i class="fas fa-check-circle"></i> Add Money: Conveniently deposit funds into your account.</li>
+                    <li><i class="fas fa-check-circle"></i> ATM Service: Access cash anytime at our ATMs nationwide.</li>
+                    <li><i class="fas fa-check-circle"></i> And more: Explore additional services tailored to your needs.</li>
+                </ul>
+
+            </div>
+        </div>
+    </section>
+   <!-- Footer Section -->
+   <footer class="footer">
+    <div class="footer-section">
+        <h3>Disclaimer</h3>
+        <p>YES BANK will NEVER ask you to reveal your User ID or Password. Therefore, never disclose your
+            credentials
+            (User ID, Password, OTP, PIN etc.) to anyone either through mail or over phone. If you receive any mail
+            asking
+            you to update or authenticate your User ID or Password, please DO NOT fall into the trap of putting in
+            your
+            Password or OTP or PIN.</p>
+    </div>
+
+    <div class="footer-section">
+        <h3>Connect</h3>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</footer>
+
+     <script>
+
+  document.getElementById('homeLink').addEventListener('click', function(event) {
+        event.preventDefault();  // Prevent default navigation
+          // Get email from hidden input
+        window.location.href = '/user-dashboard';  // Redirect to dashboard with email
+    });
+    </script>
+</body>
+
+</html>
